@@ -1,10 +1,10 @@
 [package]
 name = "cl-arena"
-repository = "https://github.com/boxdyn/Conlang"
+description = "A less robust bump allocator for Conlang"
+repository = "https://github.com/boxdyn/cl-arena"
 version = "0.0.7"
 authors = ["John <j@soft.fish>"]
 edition = "2021"
 license = "MIT"
-publish = ["soft-fish"]
 
 [dependencies]

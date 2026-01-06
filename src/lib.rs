@@ -5,7 +5,7 @@
 //!
 //! [1]: https://raw.githubusercontent.com/rust-lang/rust/master/LICENSE-MIT
 
-#![feature(dropck_eyepatch)]
+#![cfg_attr(feature = "nightly", feature(dropck_eyepatch))]
 #![no_std]
 
 extern crate alloc;
@@ -18,6 +18,7 @@ pub(crate) mod constants {
 
 mod chunk;
 
+#[cfg(feature = "nightly")]
 pub mod typed_arena;
 
 pub mod dropless_arena;

@@ -7,6 +7,7 @@ use core::{
 
 pub struct ArenaChunk<T> {
     pub(crate) mem: NonNull<[MaybeUninit<T>]>,
+    #[cfg(feature = "nightly")]
     pub(crate) filled: usize,
 }
 
@@ -15,6 +16,7 @@ impl<T: Sized> ArenaChunk<T> {
         let slice = Box::new_uninit_slice(cap);
         Self {
             mem: NonNull::from(Box::leak(slice)),
+            #[cfg(feature = "nightly")]
             filled: 0,
         }
     }
@@ -24,6 +26,7 @@ impl<T: Sized> ArenaChunk<T> {
     /// # Safety
     ///
     /// The caller must ensure that `self.filled` elements of self are currently initialized
+    #[cfg(feature = "nightly")]
     pub unsafe fn drop_elements(&mut self) {
         if mem::needs_drop::<T>() {
             // Safety: the caller has ensured that `filled` elements are initialized
